@@ -11,8 +11,9 @@ namespace recapassignment
     {
         List<Texture2D> poutineTextures = new List<Texture2D>();
         Random generator = new Random();
-        Texture2D backgroundTexture, poutineTexture, poutineTexture2, poutineTexture3, poutineTexture4;
-        Rectangle backgroundRect, poutineRect, poutineRect2, poutineRect3, poutineRect4, window;
+        Texture2D backgroundTexture, poutineTexture1, poutineTexture2, poutineTexture3, poutineTexture4;
+        Rectangle backgroundRect, poutineRect1, poutineRect2, poutineRect3, poutineRect4, window;
+        SpriteFont drippyFont;
 
         MouseState mouseState, prevMouseState;
 
@@ -37,7 +38,7 @@ namespace recapassignment
             _graphics.ApplyChanges();
 
             backgroundRect = new Rectangle(0, 0, window.Width, window.Height);
-            poutineRect = new Rectangle(200, 150, 125, 125);
+            poutineRect1 = new Rectangle(200, 150, 125, 125);
             poutineRect2 = new Rectangle(60, 220, 200, 200);
             poutineRect3 = new Rectangle(440, 150, 125, 125);
             poutineRect4 = new Rectangle(500, 220, 200, 200);
@@ -53,12 +54,26 @@ namespace recapassignment
             // TODO: use this.Content to load your game content here
 
             backgroundTexture = Content.Load<Texture2D>("Images/battleground");
+            drippyFont = Content.Load<SpriteFont>("Fonts/DrippyFont");
             for (int i = 1; i <= 5; i++)
                 poutineTextures.Add(Content.Load<Texture2D>($"Images/poutine_{i}"));
-            poutineTexture = poutineTextures[generator.Next(poutineTextures.Count)];
-            poutineTexture2 = poutineTextures[generator.Next(poutineTextures.Count)];
-            poutineTexture3 = poutineTextures[generator.Next(poutineTextures.Count)];
-            poutineTexture4 = poutineTextures[generator.Next(poutineTextures.Count)];
+
+            int poutineIndex = generator.Next(poutineTextures.Count);
+            poutineTexture1 = poutineTextures[poutineIndex];
+            poutineTextures.RemoveAt(poutineIndex);
+
+            poutineIndex = generator.Next(poutineTextures.Count);
+            poutineTexture2 = poutineTextures[poutineIndex];
+            poutineTextures.RemoveAt(poutineIndex);
+
+            poutineIndex = generator.Next(poutineTextures.Count);
+            poutineTexture3 = poutineTextures[poutineIndex];
+            poutineTextures.RemoveAt(poutineIndex);
+
+            poutineIndex = generator.Next(poutineTextures.Count);
+            poutineTexture4 = poutineTextures[poutineIndex];
+            poutineTextures.RemoveAt(poutineIndex);
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -66,7 +81,8 @@ namespace recapassignment
             prevMouseState = mouseState;
             mouseState = Mouse.GetState();
 
-            this.Window.Title = $"x = {mouseState.X}, y = {mouseState.Y}";
+            //this.Window.Title = $"x = {mouseState.X}, y = {mouseState.Y}";
+            Window.Title = "What's happening here?";
 
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -85,7 +101,8 @@ namespace recapassignment
 
             _spriteBatch.Begin();
             _spriteBatch.Draw(backgroundTexture, backgroundRect, Color.White);
-            _spriteBatch.Draw(poutineTexture, poutineRect, Color.White);
+            _spriteBatch.DrawString(drippyFont, "POUTINE BATTLE", new Vector2(50, 5), Color.Black);
+            _spriteBatch.Draw(poutineTexture1, poutineRect1, Color.White);
             _spriteBatch.Draw(poutineTexture2, poutineRect2, Color.White);
             _spriteBatch.Draw(poutineTexture3, poutineRect3, Color.White);
             _spriteBatch.Draw(poutineTexture4, poutineRect4, Color.White);

@@ -13,6 +13,13 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Fonts/DrippyFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/DrippyFont.spritefont
+
 #begin Images/battleground.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -96,4 +103,7 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Images/poutine_6.png
+
+#begin X:/My Drive/Downloads/ICS4U monogame/recap/drippymcdrip/DrippyFont.ttf
+/copy:X:/My Drive/Downloads/ICS4U monogame/recap/drippymcdrip/DrippyFont.ttf;Fonts/DrippyFont.ttf
 
