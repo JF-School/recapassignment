@@ -17,6 +17,8 @@ namespace recapassignment
 
         MouseState mouseState, prevMouseState;
 
+        int poutineIndex;
+
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
@@ -58,7 +60,7 @@ namespace recapassignment
             for (int i = 1; i <= 5; i++)
                 poutineTextures.Add(Content.Load<Texture2D>($"Images/poutine_{i}"));
 
-            int poutineIndex = generator.Next(poutineTextures.Count);
+            poutineIndex = generator.Next(poutineTextures.Count);
             poutineTexture1 = poutineTextures[poutineIndex];
             poutineTextures.RemoveAt(poutineIndex);
 
